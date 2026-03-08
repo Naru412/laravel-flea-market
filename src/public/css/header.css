@@ -1,0 +1,15 @@
+.header {
+    background: black;
+    padding: 15px 0;
+}
+
+.header-inner {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
