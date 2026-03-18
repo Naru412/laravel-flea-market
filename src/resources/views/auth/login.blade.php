@@ -10,7 +10,15 @@
     <form method="POST" action="/login">
         @csrf
         <input type="email" name="email" placeholder="メールアドレス">
+        @error('email')
+        <div class="error">{{ $message }}</div>
+        @enderror
+
         <input type="password" name="password" placeholder="パスワード">
+        @error('password')
+        <div class="error">{{ $message }}</div>
+        @enderror
+        
         <button type="submit">
             ログインする
 

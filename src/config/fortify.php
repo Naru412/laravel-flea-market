@@ -131,6 +131,9 @@ return [
     |
     */
 
+
+    
+
     'views' => true,
 
     /*

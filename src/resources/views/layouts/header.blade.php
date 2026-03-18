@@ -6,8 +6,14 @@
         </div>
 
         <div class="header-menu">
-            <a href="/login">ログイン</a>
             <a href="/mypage">マイページ</a>
+
+            @auth
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit">ログアウト</button>
+            </form>
+            @endauth
         </div>
 
     </div>
