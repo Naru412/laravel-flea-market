@@ -8,7 +8,7 @@
 <div class="register-container">
     <h2>会員登録</h2>
 
-    <form method="POST" action="/register">
+    <form method="POST" action="/register" novalidate>
         @csrf
         <input type="text" name="name" value="{{ old('name') }}" placeholder="ユーザー名">
         @error('name')

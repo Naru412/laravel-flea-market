@@ -7,7 +7,7 @@
 @section('content')
 <div class="auth-container">
     <h2>ログイン</h2>
-    <form method="POST" action="/login">
+    <form method="POST" action="/login" novalidate>
         @csrf
         <input type="email" name="email" placeholder="メールアドレス">
         @error('email')
