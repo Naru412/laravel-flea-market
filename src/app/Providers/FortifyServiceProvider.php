@@ -16,6 +16,7 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Laravel\Fortify\Contracts\RegisterResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -75,6 +76,14 @@ class FortifyServiceProvider extends ServiceProvider
         ]);
     }
         return $user;
+ });
+
+ $this->app->singleton(RegisterResponse::class,function(){
+    return new class implements RegisterResponse{
+        public function toResponse($request){
+            return redirect('/profile');
+        }
+    };
  });
 }
 }

@@ -21,6 +21,13 @@ class ProfileController extends Controller
         $user->address = $request->address;
         $user->building = $request->building;
 
+        if($request->hasFile('image')){
+
+        $path = $request->file('image')->store('profile','public');
+
+        $user->image = $path;
+        }
+
         $user->save();
 
         return redirect('/');
