@@ -1,0 +1,64 @@
+@extends('layouts.app')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/sell.css') }}">
+@endsection
+
+@section('content')
+
+<div class="sell-container">
+<h2 class="sell-title">商品の出品</h2>
+<form action="/sell" method="POST" enctype="multipart/form-data">
+@csrf
+<div class="image-box">
+<p class="section-title">商品画像</p>
+
+<label class="image-upload">
+<input type="file" name="image">
+<span>画像を選択する</span>
+</lavel>
+
+</div>
+
+<hr>
+
+<div>
+<p class="section-title">商品の詳細</p>
+<p>カテゴリ</p>
+
+<div class="category-group">
+@foreach($categories as $category)
+<label class="category-label">
+    <input type="checkbox" name="categories[]" value="{{ $category->id }}">
+    <span>{{ $category->name}}</span>
+</label>
+@endforeach
+</div>
+
+<p>商品の状態</p>
+<select class="form-input" name="condition">
+<option>選択してください</option>
+<option>良好</option>
+<option>目立った汚れや傷なし</option>
+<option>やや傷や汚れあり</option>
+<option>状態が悪い</option>
+</select>
+</div>
+
+<hr>
+
+<p class="section-title">商品名と説明</p>
+<p>商品名</p>
+<input class="form-input" type="text" name="name">
+<p>ブランド名</p>
+<input class="form-input" type="text" name="brand">
+<p>商品の説明</p>
+<textarea class="form input" name="description"></textarea>
+<p>販売価格</p>
+<input class="form input" type="number" name="price">
+<button class="sell-button" type="submit">
+出品する
+</button>
+</form>
+</div>
+@endsection

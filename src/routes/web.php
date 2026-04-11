@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\SellController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,6 @@ Route::post('/logout', function () {
     auth()->logout();return redirect('/login');})->name('logout');
 
 Route::get('/', [ItemController::class,'index']);
+
+Route::get('/sell',[SellController::class, 'create']);
+Route::post('sell',[SellController::class,'store']);
