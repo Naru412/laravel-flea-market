@@ -21,4 +21,18 @@ class Item extends Model
         return $this->hasMany(Purchase::class);
     }
 
+    protected $fillable = [
+    'name',
+    'brand',
+    'description',
+    'price',
+    'condition',
+    'user_id',
+    'image',
+    ];
+
+    public function categories()
+    {
+    return $this->belongsToMany(Category::class);
+    }
 }

@@ -6,6 +6,10 @@
 
 @section('content')
 
+@php
+use Illuminate\Support\Str;
+@endphp
+
 <div class="tab-area">
 
     <a href="/?tab=all">おすすめ</a>
@@ -20,23 +24,21 @@
 <div class="item-card">
 
     <div class="item-image">
-
-        <img src="{{ asset($item->image) }}">
+        @if(Str::startsWith($item->image,'http'))
+        <img src="{{ $item->image }}">
+        @else
+        <img src="{{ asset('storage/'.$item->image) }}">
+        @endif
 
         @if($item->purchases->isNotEmpty())
         <div class="sold">Sold</div>
         @endif
-
     </div>
 
     <p class="item-name">
         {{ $item->name }}
     </p>
-
 </div>
-
 @endforeach
-
 </div>
-
 @endsection
