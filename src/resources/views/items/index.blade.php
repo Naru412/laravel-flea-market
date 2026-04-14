@@ -23,6 +23,7 @@ use Illuminate\Support\Str;
 
 <div class="item-card">
 
+<a href="/item/{{ $item->id }}">
     <div class="item-image">
         @if(Str::startsWith($item->image,'http'))
         <img src="{{ $item->image }}">
@@ -34,6 +35,7 @@ use Illuminate\Support\Str;
         <div class="sold">Sold</div>
         @endif
     </div>
+</a>
 
     <p class="item-name">
         {{ $item->name }}
