@@ -30,4 +30,21 @@ class ItemController extends Controller
         $items = $query->get();
         return view('items.index', compact('items'));
     }
+
+   public function show(Item $item)
+    {
+    $item->load(['categories', 'comments.user']);
+
+    return view('item-detail', compact('item'));
+    }
+
+    public function store(Request $request, $item_id)
+    {
+    Comment::create([
+        'content' => $request->content,
+        'item_id' => $item_id,
+        'user_id' => auth()->id(),
+    ]);
+    }
 }
+

@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\CommentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +32,11 @@ Route::get('/', [ItemController::class,'index']);
 
 Route::get('/sell',[SellController::class, 'create']);
 Route::post('sell',[SellController::class,'store']);
+
+Route::get('/item/{item}', [ItemController::class, 'show']);
+
+Route::post('/like/{item}', [LikeController::class, 'toggle'])->middleware('auth');
+
+Route::get('/purchase/{item}', [PurchaseController::class, 'create'])->middleware('auth');
+
+Route::post('/comment/{item}', [CommentController::class, 'store'])->middleware('auth');
