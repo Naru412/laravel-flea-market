@@ -20,7 +20,7 @@
 
         <div>
             <label>郵便番号</label>
-            <input type="text" name="postcode">
+            <input type="text" name="postal">
         </div>
 
         <div>

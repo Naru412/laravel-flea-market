@@ -40,3 +40,9 @@ Route::post('/like/{item}', [LikeController::class, 'toggle'])->middleware('auth
 Route::get('/purchase/{item}', [PurchaseController::class, 'create'])->middleware('auth');
 
 Route::post('/comment/{item}', [CommentController::class, 'store'])->middleware('auth');
+
+Route::post('/purchase/{item}', [PurchaseController::class, 'store']);
+
+Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress']);
+Route::post('/purchase/address/{item}', [PurchaseController::class, 'updateAddress']);
+Route::get('/purchase/success/{item}', [PurchaseController::class, 'success']);
