@@ -17,6 +17,9 @@
 <input type="file" name="image">
 <span>画像を選択する</span>
 </lavel>
+@error('image')
+<p class="error-message">{{ $message }}</p>
+@enderror
 
 </div>
 
@@ -35,6 +38,10 @@
 @endforeach
 </div>
 
+@error('categories')
+<p class="error-message">{{ $message }}</p>
+@enderror
+
 <p>商品の状態</p>
 <select class="form-input" name="condition">
 <option>選択してください</option>
@@ -43,19 +50,38 @@
 <option>やや傷や汚れあり</option>
 <option>状態が悪い</option>
 </select>
+@error('condition')
+<p class="error-message">{{ $message }}</p>
+@enderror
 </div>
 
 <hr>
 
 <p class="section-title">商品名と説明</p>
 <p>商品名</p>
-<input class="form-input" type="text" name="name">
+<input class="form-input" type="text" name="name" value="{{ old('name') }}">
+@error('name')
+<p class="error-message">{{ $message }}</p>
+@enderror
+
 <p>ブランド名</p>
-<input class="form-input" type="text" name="brand">
+<input class="form-input" type="text" name="brand" value="{{ old('brand') }}">
+@error('brand')
+<p class="error-message">{{ $message }}</p>
+@enderror
+
 <p>商品の説明</p>
-<textarea class="form input" name="description"></textarea>
+<textarea class="form-input" name="description">{{ old('description') }}</textarea>
+@error('description')
+<p class="error-message">{{ $message }}</p>
+@enderror
+
 <p>販売価格</p>
-<input class="form input" type="number" name="price">
+<input class="form-input" type="number" name="price" value="{{ old('price') }}">
+@error('price')
+<p class="error-message">{{ $message }}</p>
+@enderror
+
 <button class="sell-button" type="submit">
 出品する
 </button>

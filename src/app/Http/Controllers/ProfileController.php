@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
+//編集画面表示
     public function edit()
     {
-        return view('auth.profile');
+        $user = auth()->user();
+        return view('auth.profile', compact('user'));
     }
 
-    public function update(Request $request)
+//プロフィールを保存
+    public function update(ProfileRequest $request)
     {
 
         $user = auth()->user();
@@ -31,5 +35,16 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect('/');
+    }
+
+//マイページ表示
+    public function show()
+    {
+    $user = auth()->user();
+    $items = $user->items;
+    $purchases = $user->purchases()->with('item')->get();
+
+
+    return view('auth.show', compact('user', 'items', 'purchases'));
     }
 }

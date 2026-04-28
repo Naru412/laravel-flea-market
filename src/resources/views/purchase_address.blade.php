@@ -6,7 +6,7 @@
 
 @section('content')
 
-<form action="/purchase/address/{{ $item->id }}" method="POST">
+<form class="address-form" action="/purchase/address/{{ $item->id }}" method="POST">
     @csrf
 
     <input type="text" name="postcode" placeholder="郵便番号" value="{{ old('postcode') }}">
@@ -23,3 +23,4 @@
 
     <button type="submit">変更する</button>
 </form>
+@endsection
