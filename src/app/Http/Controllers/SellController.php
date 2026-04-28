@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ExhibitionRequest;
 
 
 class SellController extends Controller
@@ -16,7 +17,7 @@ class SellController extends Controller
         return view('sell',compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
         $imagePath = null;
         if($request->hasFile('image')){

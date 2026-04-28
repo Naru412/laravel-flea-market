@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Laravel\Fortify\Contracts\RegisterResponse;
+use Laravel\Fortify\Contracts\LoginResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -24,9 +25,31 @@ class FortifyServiceProvider extends ServiceProvider
      * Register any application services.
      */
     public function register(): void
-    {
-        //
-    }
+{
+    // ログイン後
+    $this->app->singleton(LoginResponse::class, function () {
+        return new class implements LoginResponse {
+            public function toResponse($request)
+            {
+                if ($request->user()->hasVerifiedEmail()) {
+                    return redirect('/');
+                }
+
+                return redirect('/email/verify');
+            }
+        };
+    });
+
+    // 会員登録後
+    $this->app->singleton(RegisterResponse::class, function () {
+        return new class implements RegisterResponse {
+            public function toResponse($request)
+            {
+                return redirect('/email/verify');
+            }
+        };
+    });
+}
 
     /**
      * Bootstrap any application services.
@@ -56,6 +79,10 @@ class FortifyServiceProvider extends ServiceProvider
         return view('auth.register');
         });
 
+        Fortify::verifyEmailView(function () {
+        return view('auth.verify-email');
+        });
+
         Fortify::authenticateUsing(function ($request) {
 
         $request->validate(
@@ -76,14 +103,6 @@ class FortifyServiceProvider extends ServiceProvider
         ]);
     }
         return $user;
- });
-
- $this->app->singleton(RegisterResponse::class,function(){
-    return new class implements RegisterResponse{
-        public function toResponse($request){
-            return redirect('/profile');
-        }
-    };
  });
 }
 }

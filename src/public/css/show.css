@@ -1,0 +1,70 @@
+.mypage {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.profile-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.default {
+    background: #ddd;
+}
+
+.edit-btn {
+    border: 1px solid red;
+    color: red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.tab-menu {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.tab-menu a {
+    margin-right: 30px;
+    text-decoration: none;
+    color: #333;
+}
+
+.tab-menu .active {
+    color: red;
+    font-weight: bold;
+}
+
+.item-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.item-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #ddd;
+}
+
+.item-card p {
+    margin-top: 10px;
+}
