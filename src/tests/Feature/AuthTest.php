@@ -103,7 +103,7 @@ public function test_register_password_confirmation_mismatch()
     }
 
     /**
-     * ログイン画面表示
+     * ログイン:画面表示
      */
     public function test_login_success()
     {
@@ -118,6 +118,50 @@ public function test_register_password_confirmation_mismatch()
 
         $response->assertRedirect('/');
     }
+
+    
+/**
+ * ログイン:メール未入力
+ */
+public function test_login_email_required()
+{
+    $response = $this->post('/login', [
+        'email' => '',
+        'password' => 'password123',
+    ]);
+
+    $response->assertSessionHasErrors(['email']);
+}
+
+/**
+ * ログイン:パスワード未入力
+ */
+public function test_login_password_required()
+{
+    $response = $this->post('/login', [
+        'email' => 'test@test.com',
+        'password' => '',
+    ]);
+
+    $response->assertSessionHasErrors(['password']);
+}
+
+/**
+ * ログイン:誤った情報
+ */
+public function test_login_invalid_credentials()
+{
+    $user = \App\Models\User::factory()->create([
+        'password' => bcrypt('correct-password'),
+    ]);
+
+    $response = $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'wrong-password',
+    ]);
+
+    $response->assertSessionHasErrors();
+}
 
     /**
      * ログアウト
