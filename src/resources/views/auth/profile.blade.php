@@ -33,7 +33,7 @@
 
         <div>
             <label>郵便番号</label>
-            <input type="text" name="postal" value="{{ old('name', $user->postal) }}">
+            <input type="text" name="postal" value="{{ old('postal', $user->postcode) }}">
             @error('postal')
             <p class="error-message">{{ $message }}</p>
             @enderror

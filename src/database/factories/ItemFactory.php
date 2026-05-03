@@ -15,7 +15,7 @@ class ItemFactory extends Factory
     public function definition()
     {
         return [
-             'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => User::factory(),
             'name' => $this->faker->word(),
             'brand' => $this->faker->company(),
             'description' => $this->faker->sentence(),
@@ -27,8 +27,6 @@ class ItemFactory extends Factory
                 '傷あり'
             ]),
             'image' => 'test.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

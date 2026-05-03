@@ -11,9 +11,7 @@ use Illuminate\Support\Str;
 @endphp
 
 <div class="mypage">
-
     <div class="profile-header">
-
         <div class="profile-left">
             @if($user->image)
                 <img src="{{ asset('storage/' . $user->image) }}" class="profile-image">
@@ -23,9 +21,7 @@ use Illuminate\Support\Str;
 
             <h2>{{ $user->name }}</h2>
         </div>
-
         <a href="/mypage/profile" class="edit-btn">プロフィールを編集</a>
-
     </div>
 
     <div class="tab-menu">
@@ -78,7 +74,5 @@ use Illuminate\Support\Str;
 
         @endif
     </div>
-
 </div>
-
 @endsection    

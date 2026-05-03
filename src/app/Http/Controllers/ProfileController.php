@@ -21,7 +21,7 @@ class ProfileController extends Controller
         $user = auth()->user();
 
         $user->name = $request->name;
-        $user->postal = $request->postal;
+        $user->postcode = $request->postal;
         $user->address = $request->address;
         $user->building = $request->building;
 

@@ -71,7 +71,7 @@ class PurchaseController extends Controller
                 'user_id' => $user->id,
                 'item_id' => $item->id,
                 'payment_method' => session('payment_method'),
-                'postcode' => session('postcode') ?? $user->postal,
+                'postcode' => session('postcode') ?? $user->postcode,
                 'address' => session('address') ?? $user->address,
                 'building' => session('building') ?? $user->building,
             ]);

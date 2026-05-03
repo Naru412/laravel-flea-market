@@ -7,29 +7,37 @@ use App\Models\Item;
 
 class ItemController extends Controller
 {
-    public function index(Request $request)
-    {
-        $query = Item::with('purchases');
-        if($request->tab == 'mylist'){
-            if(!auth()->check()){
-                $items = collect();
-                return view('items.index', compact('items'));
-            }else
-            {
-                $query->whereHas('likes', function($q){
-                    $q->where('user_id', auth()->id());
-                });
-            }
-        }else
-        {
-            $query->where('user_id','!=',auth()->id());
+   public function index(Request $request)
+{
+    $query = Item::with('purchases');
+
+    // マイリスト
+    if ($request->tab == 'mylist') {
+
+        if (!auth()->check()) {
+            return view('items.index', ['items' => collect()]);
         }
-        if($request->keyword){
-             $query->where('name','like','%'.$request->keyword.'%');
+
+        $query->whereHas('likes', function ($q) {
+            $q->where('user_id', auth()->id());
+        });
+
+    } else {
+        // おすすめ（自分の商品を除外）
+        if (auth()->check()) {
+            $query->where('user_id', '!=', auth()->id());
         }
-        $items = $query->get();
-        return view('items.index', compact('items'));
     }
+
+    // 検索（ここに統合する）
+    if ($request->keyword) {
+        $query->where('name', 'like', '%' . $request->keyword . '%');
+    }
+
+    $items = $query->get();
+
+    return view('items.index', compact('items'));
+}
 
    public function show(Item $item)
     {

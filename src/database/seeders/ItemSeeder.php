@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Item;
+use App\Models\User;
 
 class ItemSeeder extends Seeder
 {
@@ -12,10 +13,11 @@ class ItemSeeder extends Seeder
      *
      * @return void
      */
-        public function run()
+public function run()
 {
+    $user = User::first();
     Item::create([
-        'user_id'=>1,
+        'user_id'=> $user->id,
         'name'=>'腕時計',
         'brand'=>'Rolax',
         'description'=>'スタイリッシュなデザインのメンズ腕時計',
@@ -25,7 +27,7 @@ class ItemSeeder extends Seeder
     ]);
 
     Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'HDD',
         'brand'=>'西芝',
         'description'=>'高速で信頼性の高いハードディスク',
@@ -35,7 +37,7 @@ class ItemSeeder extends Seeder
     ]);
 
    Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'玉ねぎ3束',
         'brand'=>'なし',
         'description'=>'新鮮な玉ねぎ3束のセット',
@@ -45,7 +47,7 @@ class ItemSeeder extends Seeder
     ]);
 
     Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'革靴',
         'brand'=>'',
         'description'=>'クラシックなデザインの革靴',
@@ -55,7 +57,7 @@ class ItemSeeder extends Seeder
     ]);
 
     Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'ノートPC',
         'brand'=>'',
         'description'=>'高性能なノートパソコン',
@@ -65,7 +67,7 @@ class ItemSeeder extends Seeder
     ]);
 
     Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'マイク',
         'brand'=>'なし',
         'description'=>'高音質のレコーディング用マイク',
@@ -75,7 +77,7 @@ class ItemSeeder extends Seeder
     ]);
 
     Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'ショルダーバッグ',
         'brand'=>'',
         'description'=>'おしゃれなショルダーバッグ',
@@ -85,7 +87,7 @@ class ItemSeeder extends Seeder
     ]);
 
     Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'タンブラー',
         'brand'=>'なし',
         'description'=>'使いやすいタンブラー',
@@ -95,7 +97,7 @@ class ItemSeeder extends Seeder
     ]);
 
     Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'コーヒーミル',
         'brand'=>'Starbacks',
         'description'=>'手動のコーヒーミル',
@@ -105,7 +107,7 @@ class ItemSeeder extends Seeder
     ]);
 
     Item::create([
-        'user_id'=>1,
+        'user_id'=>  $user->id,
         'name'=>'メイクセット',
         'brand'=>'',
         'description'=>'便利なメイクアップセット',

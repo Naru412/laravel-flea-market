@@ -12,7 +12,12 @@
 
             <!-- 左 -->
             <div class="left">
-                <img src="{{ asset('storage/'.$item->image) }}">
+                @if(Str::startsWith($item->image,'http'))
+                <img src="{{ $item->image }}">
+                @else
+                <img src="{{ asset('images/'.$item->image) }}">
+                @endif
+
                 <h2>{{ $item->name }}</h2>
                 <p>¥{{ number_format($item->price) }}</p>
             </div>
@@ -30,7 +35,7 @@
             @enderror
 
             <h3>配送先</h3>
-            <p>〒{{ session('postcode') ?? auth()->user()->postal }}</p>
+            <p>〒{{ session('postcode') ?? auth()->user()->postcode }}</p>
             <p>{{ session('address') ?? auth()->user()->address }}</p>
             <p>{{ session('building') ?? auth()->user()->building }}</p>
             <a href="/purchase/address/{{ $item->id }}">住所変更</a>
